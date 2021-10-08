@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<center>
+    <h1>{{ title }}</h1>
+    <div style="width:864px;">
+        <canvas id="myChart"></canvas>
+    </div>
+</center>
+</body>
+<script>
+    const data = {
+    datasets: [{
+    label: '{{ legend }}',
+    data: [
+    {% for i,j in zip(x,y) %} {
+    x: "{{ i }}",
+    y: "{{ j }}"
+    },
+    {% endfor %} ],
+    backgroundColor: 'rgb(255, 99, 132)'
+    }],
+    };
+    const config = {
+    type: 'scatter',
+    data: data,
+    options: {
+    scales: {
+    x: {
+    type: 'linear',
+    position: 'bottom'
+    }
+    }
+    }
+    };
+
+    var myChart = new Chart(
+    document.getElementById('myChart'),
+    config
+    );
+
+
+
+</script>
+</html>
